@@ -38,7 +38,7 @@ long deplacement_suivant( long Its)
 }
 
 /*récupere le numéro de la première ligne de la node considérée*/
-int found_first_connexion (long node)
+int find_first_connexion (long node)
 {
     	/* Place dans tab */
 	long i;
