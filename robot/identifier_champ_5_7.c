@@ -1,0 +1,267 @@
+/******************************************************************************
+* identifier des grand carres                                               *
+*                                                                             *
+*******************************************************************************/
+
+/*-------------+
+|Include Files |
++-------------*/
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+/*--------------------------------+
+| Variables globales au programme |
++--------------------------------*/
+
+#define EXT 
+#include "tab.h"
+
+#include "lch.h"
+
+extern liste_chainee *racine;
+extern liste_chainee *racine5;
+extern liste_chainee *racine7;
+extern liste_chainee *racine9;
+
+extern long    peint_min;
+extern long    peint_min_5_5;
+extern long    peint_min_7_7;
+extern long    peint_min_9_9;
+
+int identifier_5_5( char *ptr_arg)
+{
+    /* 5x5 bon si 9 + 8 + 2 + 2 blancs, soit 4 noirs  */
+    long cell_l_c[3];
+    long i,j,k,g, peint, vide;
+    
+    memcpy(&cell_l_c, ptr_arg, sizeof(cell_l_c));
+
+    i=cell_l_c[0];
+    j=cell_l_c[1];
+    if ( i < nL -5 && j < nC -5 ) {
+        vide=0;
+        peint=0;
+        for(k=i; k<i+5; k++){
+            for(g=j; g<j+5; g++){
+                if(tab[k][g] == 1){
+                    peint = peint + 1;
+                } else if ( tab[k][g]%2 == 0 ){
+                    vide = vide + 1;
+                    if ( vide > (25-peint_min_5_5) ) {
+                        //printf("%ld %ld 5 1 peint %ld  %ld vide nb %ld\n",j+2,i+2, peint, cell_l_c[2], vide);
+                        return(OK);
+                    }
+                }
+            }
+        }
+        
+        if ( peint >= peint_min_5_5 ) {
+            cell_l_c[2] = peint;
+            // fprintf(stderr,"%ld %ld 5 1 peint %ld  %ld vide nb %ld\n",j+2,i+2, peint, cell_l_c[2], vide);
+
+            lch_enfiler(&racine5, (char *) &cell_l_c, sizeof(cell_l_c) );
+            return(OK);
+        }
+    }
+    return(OK);
+}
+
+
+
+int peindre_5_5( char *ptr_arg)
+{
+    /* 5x5 bon si 9 + 8 + 2 + 2 blancs, soit 4 noirs  */
+    long cell_l_c[3];
+    long i,j,k,g, peint, vide;
+    
+    memcpy(&cell_l_c, ptr_arg, sizeof(cell_l_c));
+    
+    if ( cell_l_c[2] >= peint_min) {
+        i=cell_l_c[0];
+        j=cell_l_c[1];
+        vide=0;
+        peint=0;
+        for(k=i; k<i+5; k++){
+            for(g=j; g<j+5; g++){
+                if(tab[k][g] == 1){
+                    peint = peint + 1;
+                } else if ( tab[k][g] == 0 ){
+                    vide = vide + 1;
+                }
+            }
+        }
+        
+        if ( peint-vide >= peint_min) {
+            printf("%ld %ld 5 1\n",j+2,i+2 );
+            for (k=i; k< i+5; k++ ){
+                for(g=j; g<j+5; g++){
+                    tab[k][g] += 2;
+                }
+            }
+            return(LISTE_DETRUIT);
+        } else if ( peint-vide < 2 ) { 
+            return(LISTE_DETRUIT);
+        }
+    }
+    return(OK);
+}
+
+int identifier_7_7( char *ptr_arg)
+{
+    /* 7x7 bon si 25 + 8 + damier blancs, soit 8 noirs  */
+    long cell_l_c[3];
+    long i,j,k,g, peint, vide;
+    
+    memcpy(&cell_l_c, ptr_arg, sizeof(cell_l_c));
+
+    i=cell_l_c[0];
+    j=cell_l_c[1];
+    if ( i < nL -7 && j < nC -7 ) {
+        vide=0;
+        peint=0;
+        for(k=i; k<i+7; k++){
+            for(g=j; g<j+7; g++){
+                if(tab[k][g] == 1){
+                    peint = peint + 1;
+                } else if ( tab[k][g]%2 == 0 ){
+                    vide = vide + 1;
+                    if ( vide > (49-peint_min_7_7) ) {
+                        //printf("%ld %ld 7 1 peint %ld  %ld vide nb %ld\n",j+2,i+2, peint, cell_l_c[2], vide);
+                        return(OK);
+                    }
+                }
+            }
+        }
+        
+        if ( peint >= peint_min_7_7 ) {
+            cell_l_c[2] = peint;
+            // fprintf(stderr,"%ld %ld 7 1 peint %ld  %ld vide nb %ld\n",j+3,i+3, peint, cell_l_c[2], vide);
+
+            lch_enfiler(&racine7, (char *) &cell_l_c, sizeof(cell_l_c) );
+            return(OK);
+        }
+    }
+    return(OK);
+}
+
+
+
+int peindre_7_7( char *ptr_arg)
+{
+    /* 7x7 bon si 25 + 8 + damier blancs, soit 8 noirs  */
+    long cell_l_c[3];
+    long i,j,k,g, peint, vide;
+    
+    memcpy(&cell_l_c, ptr_arg, sizeof(cell_l_c));
+    
+    if ( cell_l_c[2] >= peint_min) {
+        i=cell_l_c[0];
+        j=cell_l_c[1];
+        vide=0;
+        peint=0;
+        for(k=i; k<i+7; k++){
+            for(g=j; g<j+7; g++){
+                if(tab[k][g] == 1){
+                    peint = peint + 1;
+                } else if ( tab[k][g] == 0 ){
+                    vide = vide + 1;
+                 }
+            }
+        }
+        
+        if ( peint-vide >= peint_min) {
+            printf("%ld %ld 7 1\n",j+3,i+3 );
+            for (k=i; k< i+7; k++ ){
+                for(g=j; g<j+7; g++){
+                    tab[k][g] += 2;
+                }
+            }
+            return(LISTE_DETRUIT);
+        } else if ( peint-vide < 2 ) { 
+            return(LISTE_DETRUIT);
+        }
+    }
+    return(OK);
+}
+
+int identifier_9_9( char *ptr_arg)
+{
+    /* 9x9 bon si 25 + 24 + 9 + 9 : 67 soit 24 noirs  */
+    long cell_l_c[3];
+    long i,j,k,g, peint, vide;
+    
+    memcpy(&cell_l_c, ptr_arg, sizeof(cell_l_c));
+
+    i=cell_l_c[0];
+    j=cell_l_c[1];
+    if ( i < nL -9 && j < nC -9 ) {
+        vide=0;
+        peint=0;
+        for(k=i; k<i+9; k++){
+            for(g=j; g<j+9; g++){
+                if(tab[k][g] == 1){
+                    peint = peint + 1;
+                } else if ( tab[k][g]%2 == 0 ){
+                    vide = vide + 1;
+                    if ( vide > (9*9-peint_min_9_9) ) {
+                        //printf("%ld %ld 9 1 peint %ld  %ld vide nb %ld\n",j+2,i+2, peint, cell_l_c[2], vide);
+                        return(OK);
+                    }
+                }
+            }
+        }
+        
+        if ( peint >= peint_min_9_9 ) {
+            cell_l_c[2] = peint;
+            // fprintf(stderr,"%ld %ld 9 1 peint %ld  %ld vide nb %ld\n",j+3,i+3, peint, cell_l_c[2], vide);
+
+            lch_enfiler(&racine9, (char *) &cell_l_c, sizeof(cell_l_c) );
+            return(OK);
+        }
+    }
+    return(OK);
+}
+
+
+
+int peindre_9_9( char *ptr_arg)
+{
+    /* 9x9 bon si 25 + 24 + 9 + 9 soit 24 noirs  */
+    long cell_l_c[3];
+    long i,j,k,g, peint, vide;
+    
+    memcpy(&cell_l_c, ptr_arg, sizeof(cell_l_c));
+    
+    if ( cell_l_c[2] >= peint_min) {
+        i=cell_l_c[0];
+        j=cell_l_c[1];
+        vide=0;
+        peint=0;
+        for(k=i; k<i+9; k++){
+            for(g=j; g<j+9; g++){
+                if(tab[k][g] == 1){
+                    peint = peint + 1;
+                } else if ( tab[k][g] == 0 ){
+                    vide = vide + 1;
+                }
+            }
+        }
+        
+        if ( peint-vide >= peint_min) {
+            printf("%ld %ld 9 1\n",j+4,i+4 );
+            for (k=i; k< i+9; k++ ){
+                for(g=j; g<j+9; g++){
+                    tab[k][g] += 2;
+                }
+            }
+            return(LISTE_DETRUIT);
+        } else if ( peint-vide < 2 ) { 
+            return(LISTE_DETRUIT);
+        }
+    }
+    return(OK);
+}
+

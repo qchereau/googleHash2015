@@ -1,0 +1,58 @@
+/******************************************************************************
+* Lire un fichier contenant un tableau de nombres                             *
+*-----------------------------------------------------------------------------*
+* COMPONENT NAME   = lit_tableau.c                                               *
+*                                                                             *
+*******************************************************************************/
+
+/*
+ * 
+syntaxe:  lit_tableau < fichier
+
+*/
+
+/*-------------+
+|Include Files |
++-------------*/
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+/*--------------------------------+
+| Variables globales au programme |
++--------------------------------*/
+
+#define EXT 
+#include "tab.h"
+
+
+/*------------------------------------------------------*/
+/*              Programme principal                     */
+/*------------------------------------------------------*/
+
+main(int argc, char **argv)
+{
+    long ic, il;
+    char *nom_fic_result, nom_fichier_result[80];
+    
+    nL=0;
+    nC=0;
+    memset(tab,'\0',sizeof(tab));
+
+    yylex();
+    
+    printf ("lignes %ld, col %ld \n",nL, nC);
+
+    for ( il=0; il < nL ; il++ ) {
+        for ( ic=0; ic < nC ; ic++) {
+            if ( tab[il][ic]==1 ) {
+		printf("%ld %ld 1 1\n", ic, il );
+            }
+        }
+    }
+
+
+    exit(0);
+}
