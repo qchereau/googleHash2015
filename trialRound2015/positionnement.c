@@ -28,7 +28,7 @@ void localiser_serveur(){
 	int line;
 	int localisation;
 	int rangee;
-	int bestRangee;
+	int bestRange;
 	int hasAddedAnElement;
 
 	memset(groupeRange,'\0',sizeof(groupeRange));
@@ -43,17 +43,17 @@ void localiser_serveur(){
 		for(i=0; i<NB_GROUP; i++){
 			dernierTraite=0;
 			line=0;
-			while(dernierTraite!=serverTraite && server[serverSortedU[line][1]][3]==i){
-				if(server[serverSortedU[line][1]][3]==i){
+			while(dernierTraite!=serverTraite && serv[servSortedU[line][1]][3]==i){
+				if(serv[servSortedU[line][1]][3]==i){
 					dernierTraite++;
 				}
 				line++;
-				if(line>NB_SERVER){
+				if(line>NB_SERV){
 					break;
 				}
 			}
 
-			if(line>NB_SERVER){
+			if(line>NB_SERV){
 				continue;
 			}
 
@@ -69,11 +69,11 @@ void localiser_serveur(){
 			
 			if(rangee!=-1){
 				groupeRange[rangee][i]=1;
-				server[serverSortedU[line][1]][4]=rangee;
-				server[serverSortedU[line][1]][5]=prochain_emplacement_libre(rangee,server[serverSortedU[line][1]][5]);
+				serv[servSortedU[line][1]][4]=rangee;
+				serv[servSortedU[line][1]][5]=prochain_emplacement_libre(rangee,serv[servSortedU[line][1]][5]);
 			}else{
-				server[serverSortedU[line][1]][4]=rangee;
-				server[serverSortedU[line][1]][5]=-1;				
+				serv[servSortedU[line][1]][4]=rangee;
+				serv[servSortedU[line][1]][5]=-1;				
 			}
 		}
 		serverTraite++;

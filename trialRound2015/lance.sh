@@ -14,3 +14,5 @@ cat dc_serv_cap_ord >> dc.in3
 echo 'UTIL' >> dc.in3
 cat dc_serv_util_ord >> dc.in3
 
+./range_servers < dc.in3 > res1.txt
+
