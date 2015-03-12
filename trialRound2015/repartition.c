@@ -30,7 +30,7 @@ void repartir_serveur(){
 		treatedGroup=0;
 		minValue=group[0];
 		for(j=1;j<NB_GROUP; j++){
-			if(group[j]<NB_GROUP){
+			if(group[j]<minValue){
 				treatedGroup=j;
 				minValue=group[j];
 			}
