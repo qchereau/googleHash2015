@@ -42,23 +42,8 @@ main(int argc, char **argv)
 
     yylex();
 
+    /* serv et center sont initialises */
 
-    for ( il=0; il < NB_RANGEE ; il++ ) {
-        for ( ic=0; ic < NB_EMPLACEMENT ; ic++) {
-            if ( center[il][ic] == 1 ) {
-            	printf ("%d %d\n",il, ic);
-            }
-        }
-    }
-    fflush(stdout);
- 
-    printf ("SERVEURS \n");
-    fflush(stdout);
-
-    for ( il=0; il < NB_SERV ; il++ ) {
-        printf ("%d %d\n", serv[il][0], serv[il][1] );
-    }
-    fflush(stdout);
  
 
 
