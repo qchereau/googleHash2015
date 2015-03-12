@@ -6,25 +6,17 @@ pour tester
 #define EXT extern
 #endif
 
-#define NB_COL 6
-#define NB_LIG 30000
+#define NB_EMPLACEMENT 100
+#define NB_RANGEE 16
 
-EXT long nC;
-EXT long nL;
+EXT int nR;
+EXT int nE;
 
-EXT long inter[NB_LIG][NB_COL];
+EXT int center[NB_RANGEE][NB_EMPLACEMENT];
 
-EXT long nCd;
-EXT long nLd;
+#define NB_SERV 625
 
-EXT double tabd[NB_LIG][NB_COL];
+EXT int serv[NB_SERV][2];
 
 
-EXT long nIntersec;
-EXT long nRoute;
-EXT long nCar;
-EXT long DureeMax;
-EXT long StartIntersec;
 
-EXT double MoyRues; 
-EXT long DureeSomme;
