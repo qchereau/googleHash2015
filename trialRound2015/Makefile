@@ -23,3 +23,6 @@ correctionGoogle1: correctionGoogle1.c tab.h
 lch.o: lch.c lch.h
 	cc -c lch.c
 
+localisation.o: localisation.c tab.h
+	cc -c localisation.c
+
