@@ -15,8 +15,10 @@ EXT int nE;
 EXT int center[NB_RANGEE][NB_EMPLACEMENT];
 
 #define NB_SERV 625
+#define SERV_COL 6
+/* colonnes : taille , capacite , utilite: rapport, groupe, rangee classement, empplacment rangee */
 
-EXT int serv[NB_SERV][2];
+EXT int serv[NB_SERV][SERV_COL];
 
 
 
