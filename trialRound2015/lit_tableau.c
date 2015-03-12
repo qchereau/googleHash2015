@@ -42,7 +42,7 @@ main(int argc, char **argv)
 
     yylex();
 
-
+/*
     for ( il=0; il < NB_RANGEE ; il++ ) {
         for ( ic=0; ic < NB_EMPLACEMENT ; ic++) {
             if ( center[il][ic] == 1 ) {
@@ -59,7 +59,19 @@ main(int argc, char **argv)
         printf ("%d %d\n", serv[il][0], serv[il][1] );
     }
     fflush(stdout);
- 
+*/ 
+ //   printf ("TRI CAPACITE\n");
+    for ( il=0; il < NB_SERV ; il++ ) {
+        printf ("%d %d\n", serv[il][1], il );
+    }
+    fflush(stdout);
+
+
+ //   printf ("TRI utilite\n");
+    for ( il=0; il < NB_SERV ; il++ ) {
+        fprintf (stderr,"%d %d\n", serv[il][2], il );
+    }
+    fflush(stdout);
 
 
     exit(0);

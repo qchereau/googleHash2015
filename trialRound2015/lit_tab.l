@@ -1,4 +1,4 @@
-%START SERV 
+%START SERV  CAP  UTIL
 
 %{ 
 #include "tab.h"
@@ -11,22 +11,43 @@ long iC=0;
 
 %%
 
-<SERV>[0-9]+		{
-	serv[iserv][iC]=atol(yytext);
-	iC++;
-	if ( iC > SERV_COL ) {
-		fprintf (stderr, "ERREUR, trop de colonnes\n");
-		exit(0);
-	}
-	if ( iC == 2 ) { 
-		serv[iserv][2] = (10*serv[iserv][1])/serv[iserv][0];
-		iC++;
-	}
+<SERV>[0-9]+            {
+        serv[iserv][iC]=atol(yytext);
+        iC++;
+        if ( iC > SERV_COL ) {
+                fprintf (stderr, "ERREUR, trop de colonnes\n");
+                exit(0);
+        }
+        if ( iC == 2 ) {
+                serv[iserv][2] = (10*serv[iserv][1])/serv[iserv][0];
+                iC++;
+        }
 }
-<SERV>\n      { 
+<SERV>\n      {
+        iC=0;
+        iserv++;
+}
+
+<CAP>[0-9]+	{
+	servSorted[iserv][iC]=atol(yytext);
+	iC++;
+}
+<CAP>\n      { 
 	iC=0;
 	iserv++;
 }
+
+<UTIL>[0-9]+     {
+        servSortedU[iserv][iC]=atol(yytext);
+        iC++;
+}
+<UTIL>\n      { 
+        iC=0;
+        iserv++;
+}
+
+
+
 
 [+-][0-9]+	|
 [0-9]+		{
@@ -45,8 +66,21 @@ long iC=0;
 }
 
 SERV.*\n	{
+	iserv=0;
+	iC=0;
 	BEGIN SERV;
 }
 
+CAP.*\n        {
+	iserv=0;
+	iC=0;
+        BEGIN CAP;
+}
+
+UTIL.*\n        {
+	iserv=0;
+	iC=0;
+        BEGIN UTIL;
+}
 
 .	;
