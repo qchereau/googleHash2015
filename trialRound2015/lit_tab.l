@@ -1,74 +1,52 @@
-%START NB
+%START SERV 
 
 %{ 
 #include "tab.h"
 
+long rang=-1;
+long emp=-1;
+long iserv=0;
 long iC=0;
-long iCd=0;
 %}
 
 %%
 
-<NB>[+-][0-9]*		|
-<NB>[0-9]*		{
-	tab[NB_LIG-1][iC]=atol(yytext);
+<SERV>[0-9]+		{
+	serv[iserv][iC]=atol(yytext);
 	iC++;
-	if ( iC > nC ) { 
-	    if ( nC > NB_COL ) {
+	if ( iC > SERV_COL ) {
 		fprintf (stderr, "ERREUR, trop de colonnes\n");
 		exit(0);
-	    }
+	}
+	if ( iC == 2 ) { 
+		serv[iserv][2] = (10*serv[iserv][1])/serv[iserv][0];
+		iC++;
 	}
 }
-<NB>\n      { 
-    BEGIN 0;
+<SERV>\n      { 
+	iC=0;
+	iserv++;
 }
-
-[+-]*[0-9]+\.[0-9]* { 
-	tabd[nLd][iCd]=atof(yytext);
-	iCd++;
-        if ( iCd > nCd ) { nCd = iCd;
-            if ( nCd > NB_COL ) {
-                fprintf (stderr, "ERREUR, trop de colonnes Float\n");
-                exit(0);
-            }
-        }
-}
-
 
 [+-][0-9]+	|
 [0-9]+		{
-	tab[nL][iC]=atol(yytext);
-	iC++;
-	if ( iC > nC ) { nC = iC;
-	    if ( nC > NB_COL ) {
-		fprintf (stderr, "ERREUR, trop de colonnes\n");
-		exit(0);
-	    }
+	if ( rang == -1 ) {
+		rang=atol(yytext);
+	} else {
+		emp=atol(yytext);
 	}
 }
 \n	{
-	if ( iC == 5 && tab[nL][3] !=0 ) tab[nL][5]=(10*tab[nL][4])/tab[nL][3];
-	if ( iC > 0 ) nL++;
-	if ( iCd > 0 ) nLd++;
-	iC=0;
-	iCd=0;
-	if ( nL > NB_LIG ) {
-		fprintf (stderr, "ERREUR, trop de lignes\n");
-		exit(0);
+	if ( rang != -1 && emp != -1 ) {
+		center[rang][emp] = 1 ;
 	}
-	if ( nLd > NB_LIG ) {
-		fprintf (stderr, "ERREUR, trop de lignes float\n");
-		exit(0);
-	}
+	rang = -1 ;
+	emp = -1 ;
 }
 
-NB	{
-	BEGIN NB;
+SERV.*\n	{
+	BEGIN SERV;
 }
-
-
-
 
 
 .	;
