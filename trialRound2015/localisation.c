@@ -1,5 +1,5 @@
 /******************************************************************************
-* deplacement d'une voiture                                               *
+* localisation                                               *
 *                                                                             *
 *******************************************************************************/
 
@@ -17,7 +17,6 @@
 +--------------------------------*/
 
 #include "tab.h"
-
 
 int prochain_emplacement_libre( int rangee, int tailleServeur)
 {
@@ -40,3 +39,15 @@ int prochain_emplacement_libre( int rangee, int tailleServeur)
 	}
 }
 
+/*renvoi le nombre de cases pleines*/
+int remplissage_rangee(int rangee){
+	int result;
+	int i;
+	result=0;
+	for(i=0; i<SERV_COL; i++){
+		if(center[rangee][i]==1){
+			result++;
+		}
+	}
+	return result;
+}
