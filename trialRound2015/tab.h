@@ -24,5 +24,7 @@ EXT int serv[NB_SERV][SERV_COL];
 /* Capacite, ligne_dans_serv  triee decroissant sur capacite */
 EXT int servSorted[NB_SERV][2];
 
+/* Utilite, ligne_dans_serv  triee decroissant sur Utilite */
+EXT int servSortedU[NB_SERV][2];
 
 
