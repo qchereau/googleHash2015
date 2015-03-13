@@ -53,11 +53,11 @@ void localiser_serveur(){
         }
 
         if(rangee!=-1){
-            groupeRange[rangee][group]=1;
             serv[line][4]=rangee;
             serv[line][5]=prochain_emplacement_libre(rangee,serv[line][0]);
 
             if(serv[line][5] != -1 ) {
+                groupeRange[rangee][group]=1;
                 emplacement=serv[line][5];
                 for ( j=0; j< serv[line][0]; j++ ){
                     center[rangee][emplacement+j]=1;
