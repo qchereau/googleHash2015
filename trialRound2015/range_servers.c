@@ -19,13 +19,11 @@ syntaxe:  lit_tableau < fichier
 #include <string.h>
 #include <stdlib.h>
 
+#define EXT
 
-#define EXT 
 #include "tab.h"
 
-extern void repartir_serveur();
-extern int prochain_emplacement_libre( int , int );
-extern void localiser_serveur();
+
 
 /*--------------------------------+
 | Variables globales au programme |
@@ -35,7 +33,7 @@ void genere_result()
 {
     int il;
     for ( il=0; il < NB_SERV ; il++ ) {
-        if ( serv[il][4] == -1 ) {
+        if ( serv[il][5] == -1 ) {
             printf ("x\n");
         } else {
             printf ("%d %d %d\n", serv[il][4] , serv[il][5], serv[il][3] );
@@ -59,6 +57,7 @@ main(int argc, char **argv)
     /* serv et center sont initialises */
 
     repartir_serveur();
+
     localiser_serveur();
 
     genere_result();

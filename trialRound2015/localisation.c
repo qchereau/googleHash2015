@@ -23,26 +23,32 @@ int prochain_emplacement_libre( int rangee, int tailleServeur)
 	int emplacementLibre;
 	int i, emplacementValide; 
 	emplacementLibre=0;
-	while(1){
+	i=0;
+	while(i<tailleServeur){
 		while(center[rangee][emplacementLibre]==1){
-			if(emplacementLibre==SERV_COL){
-				return -1;
-			}
 			emplacementLibre++;
-		}
-	
-		for(i=1; i<tailleServeur; i++){
-			if(center[rangee][emplacementLibre+i]==1){
-				emplacementLibre=emplacementLibre+i+1;
-				if(emplacementLibre>=SERV_COL){
-					return -1;
-				}
-				continue;
+			if(emplacementLibre==NB_EMPLACEMENT){
+				return -1;
 			}
 		}
 
-		return emplacementLibre;
+		if ( emplacementLibre + tailleServeur -1  >= NB_EMPLACEMENT){
+                        return -1;
+                }
+
+	
+		for(i=0; i<tailleServeur; i++){
+			if(center[rangee][emplacementLibre+i]==1){
+				emplacementLibre=emplacementLibre+i+1;
+				if(emplacementLibre>=NB_EMPLACEMENT){
+					return -1;
+				}
+				i=0;
+				break;
+			}
+		}
 	}
+	return emplacementLibre;
 }
 
 /*renvoi le nombre de cases pleines*/
@@ -50,7 +56,7 @@ int remplissage_rangee(int rangee){
 	int result;
 	int i;
 	result=0;
-	for(i=0; i<SERV_COL; i++){
+	for(i=0; i<NB_EMPLACEMENT; i++){
 		if(center[rangee][i]==1){
 			result++;
 		}
