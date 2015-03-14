@@ -114,7 +114,7 @@ main(int argc, char **argv)
 
     localiser_serveur();
 
-    optimizer_serveur();
+    optimizer_serveur2();
 
     genere_result();
 
