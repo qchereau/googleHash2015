@@ -19,7 +19,7 @@
 #include "tab.h"
 
 
-void localiser_serveur(){
+void optimizer_serveur(){
 	int i,j;
 	int groupeCap[NB_GROUP];
 	int hasBeenImproved;
@@ -44,7 +44,7 @@ void localiser_serveur(){
 	}
 
 	hasBeenImproved=1;
-	while(hasBeenImproved){
+	while(hasBeenImproved==1){
 		hasBeenImproved=0;
 
 		memset(protectedRangee,'\0',sizeof(protectedRangee));
@@ -82,7 +82,6 @@ void localiser_serveur(){
 			if ( serv[i][3] == lowestGroup && serv[i][5] != -1 ) {
 				if(maxg=serv[i][1]){
 					protectedRangee[serv[i][4]]=1;
-					maxg=serv[i][1];
 				}
 			}
 		}
