@@ -24,3 +24,5 @@ positionnement.o: positionnement.c tab.h
 optimizer.o: optimizer.c tab.h
 	cc -c optimizer.c
 
+clean:
+	rm *.o range_servers lit_tableau

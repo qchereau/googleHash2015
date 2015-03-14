@@ -110,7 +110,7 @@ main(int argc, char **argv)
 
     /* serv et center sont initialises */
 
-    repartir_serveur();
+    repartir_serveur_gros();
 
     localiser_serveur();
 
