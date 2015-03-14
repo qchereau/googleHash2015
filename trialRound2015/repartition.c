@@ -48,12 +48,12 @@ void repartir_serveur_gros(){
     int cible;
 
     memset(group,'\0',sizeof(group));
-    cible=430;
+    cible=410;
     /*iteration sur tout les serveurs par capacite decroisante */
     /* ranger d'abord les gros avec utilite > 80 */
     i=0; 
     treatedGroup=0;
-    while ( treatedGroup<NB_GROUP && i<NB_SERV && serv[servSorted[i][1]][1] > 64 ) {
+    while ( treatedGroup<NB_GROUP && i<NB_SERV && serv[servSorted[i][1]][1] > CapRangeImpose ) {
         if( serv[servSorted[i][1]][2] > 80 ) {
             serv[servSorted[i][1]][3]=treatedGroup;
             group[treatedGroup] += servSorted[i][0];

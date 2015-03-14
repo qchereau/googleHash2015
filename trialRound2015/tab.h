@@ -27,6 +27,9 @@ EXT int servSorted[NB_SERV][2];
 /* Utilite, ligne_dans_serv  triee decroissant sur Utilite */
 EXT int servSortedU[NB_SERV][2];
 
+/* limite classement serveur */
+EXT int CapRangeImpose;
+
 extern void repartir_serveur();
 extern int prochain_emplacement_libre( int , int );
 extern void localiser_serveur();

@@ -226,7 +226,7 @@ void optimizer_serveur2(){
 				//tentative de changement de groupe des serveurs
 				firstServer=-1;
 				for(j=0; j<NB_SERV;j++){
-					if ( serv[j][3] == currentGroup && serv[j][5] != -1 && serv[j][4]==i) {
+					if ( serv[j][3] == currentGroup && serv[j][5] != -1 && serv[j][4]==i && serv[j][1] <= CapRangeImpose) {
 						firstServer=j;
 						serv[firstServer][3]=lowestGroup;
 						break;
@@ -253,10 +253,10 @@ void optimizer_serveur2(){
 				firstServer=-1;
 				secondServer=-1;
 				for(j=0; j<NB_SERV;j++){
-					if ( serv[j][3] == currentGroup && serv[j][5] != -1 && serv[j][4]==i) {
+					if ( serv[j][3] == currentGroup && serv[j][5] != -1 && serv[j][4]==i && serv[j][1] <= CapRangeImpose) {
 						firstServer=j;
 					}
-					if ( serv[j][3] == lowestGroup && serv[j][5] != -1 && serv[j][4]==i) {
+					if ( serv[j][3] == lowestGroup && serv[j][5] != -1 && serv[j][4]==i && serv[j][1] <= CapRangeImpose) {
 						secondServer=j;
 					}
 				}

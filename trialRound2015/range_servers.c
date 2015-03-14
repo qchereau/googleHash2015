@@ -106,6 +106,15 @@ main(int argc, char **argv)
     memset(serv,'\0',sizeof(serv));
     memset(center,'\0',sizeof(center));
 
+    if ( argc > 1 ) { 
+        CapRangeImpose=atoi(argv[1]);
+        if ( CapRangeImpose == 0 ) {
+            fprintf ( stderr, "appel avec argument numerique\n");
+            exit;
+        }
+    } else { 
+        CapRangeImpose = 52;
+    }
     yylex();
 
     /* serv et center sont initialises */
