@@ -18,12 +18,12 @@ long iC=0;
                 fprintf (stderr, "ERREUR, trop de colonnes\n");
                 exit(0);
         }
-        if ( iC == 2 ) {
-                serv[iserv][2] = (10*serv[iserv][1])/serv[iserv][0];
-                iC++;
-        }
 }
 <SERV>\n      {
+        if ( iC == 2 ) {
+                serv[iserv][2] = (10*serv[iserv][1])/serv[iserv][0];
+		// if ( serv[iserv][0] >= 5 ) serv[iserv][2] = 0;
+        }
         iC=0;
         iserv++;
 }

@@ -104,12 +104,12 @@ void optimizer_serveur(){
 
 				if(firstServer!=-1){
 					if(cap_garanti_group(highestGroup)>previousScore && cap_garanti_group(lowestGroup)>previousScore){
-						groupeRangee[i][highestGroup]=0;
+						fprintf(stderr,"Serveur ajoute \n");
+                                                groupeRangee[i][highestGroup]=0;
 						groupeRangee[i][lowestGroup]=1;
 						groupeCap[highestGroup]=cap_garanti_group(highestGroup);
 						groupeCap[lowestGroup]=cap_garanti_group(lowestGroup);
 						hasBeenImproved=1;
-						break;
 					}else{
 						serv[firstServer][3]=highestGroup;
 					}
@@ -136,10 +136,10 @@ void optimizer_serveur(){
 					serv[firstServer][3]=lowestGroup;
 					serv[secondServer][3]=highestGroup;
 					if(cap_garanti_group(highestGroup)>previousScore && cap_garanti_group(lowestGroup)>previousScore){
-						groupeCap[highestGroup]=cap_garanti_group(highestGroup);
+						fprintf(stderr,"Serveurs echanges\n");
+                                                groupeCap[highestGroup]=cap_garanti_group(highestGroup);
 						groupeCap[lowestGroup]=cap_garanti_group(lowestGroup);
 						hasBeenImproved=1;
-						break;
 					}else{
 						serv[firstServer][3]=highestGroup;
 						serv[secondServer][3]=lowestGroup;
